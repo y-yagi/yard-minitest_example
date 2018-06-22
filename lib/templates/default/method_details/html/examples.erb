@@ -1,0 +1,10 @@
+<% if object["example"] %>
+<div class="tags">
+  <h3>Example:</h3>
+  <div>
+    <pre class="code">
+      <%= html_syntax_highlight object[:example].first[:source] %>
+    </pre>
+  </div>
+</div>
+<% end %>
