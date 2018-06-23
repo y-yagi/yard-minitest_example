@@ -4,6 +4,14 @@ require "byebug"
 
 YARD::Templates::Engine.register_template_path File.dirname(__FILE__) + '/../templates'
 
+YARD::Parser::SourceParser.before_parse_file do |parser|
+  if parser.file.end_with?("_test.rb") && !parser.file.end_with?("example_test.rb")
+    false
+  else
+    true
+  end
+end
+
 module Yard
   module MinitestExample
     class ExampleWrapper < YARD::Handlers::Ruby::HandlesExtension
