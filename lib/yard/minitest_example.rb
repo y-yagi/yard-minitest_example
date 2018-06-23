@@ -45,8 +45,8 @@ module Yard
           code, output = statement.last.source.split("# Output:\n")
 
           (obj[:example] ||= []) << {
-            code: code.chomp.strip,
-            output: output.chomp.strip,
+            code: code.chomp.gsub(/^\s+/, ""),
+            output: output.chomp.gsub(/^\s+/, ""),
           }
         end
       rescue YARD::Handlers::NamespaceMissingError
