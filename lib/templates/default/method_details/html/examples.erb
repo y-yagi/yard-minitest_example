@@ -2,8 +2,13 @@
 <div class="tags">
   <h3>Example:</h3>
   <div>
+    <strong>Code:</strong>
     <pre class="code">
-      <%= html_syntax_highlight object[:example].first[:source] %>
+      <%= html_syntax_highlight object[:example].first[:code] %>
+    </pre>
+    <strong>Output:</strong>
+    <pre class="code">
+      <%= html_syntax_highlight object[:example].first[:output] %>
     </pre>
   </div>
 </div>

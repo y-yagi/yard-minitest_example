@@ -42,8 +42,11 @@ module Yard
           obj = YARD::Registry.resolve(P(owner[:example]), "##{m}")
           return if obj.nil?
 
+          code, output = statement.last.source.split("# Output:\n")
+
           (obj[:example] ||= []) << {
-            source: statement.last.source.chomp.strip
+            code: code.chomp.strip,
+            output: output.chomp.strip,
           }
         end
       rescue YARD::Handlers::NamespaceMissingError
