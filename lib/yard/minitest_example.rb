@@ -6,7 +6,7 @@ YARD::Templates::Engine.register_template_path File.dirname(__FILE__) + '/../tem
 
 module Yard
   module MinitestExample
-    class ExampleDefWrapper < YARD::Handlers::Ruby::HandlesExtension
+    class ExampleWrapper < YARD::Handlers::Ruby::HandlesExtension
       def matches?(node)
         case node.type
         when :def
@@ -24,7 +24,7 @@ module Yard
     class Handler < YARD::Handlers::Ruby::Base
       class << self
         def example_call
-          ExampleDefWrapper.new("example_")
+          ExampleWrapper.new("example_")
         end
       end
 
