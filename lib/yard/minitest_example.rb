@@ -38,8 +38,9 @@ module Yard
         elsif statement.type == :def
           return if owner.nil?
 
+          class_name = self.namespace.to_s.sub("Test", "")
           m = statement.first[0].sub("example_", "")
-          obj = YARD::Registry.resolve(P(owner[:example]), "##{m}")
+          obj = YARD::Registry.resolve(P(class_name), "##{m}")
           return if obj.nil?
 
           code, output = statement.last.source.split("# Output:\n")
