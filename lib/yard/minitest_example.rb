@@ -55,7 +55,7 @@ module Yard
 
           (obj[:example] ||= []) << {
             code: code.chomp.gsub(/^\s+/, ""),
-            output: output.chomp.gsub(/^\s+/, ""),
+            output: output.chomp.gsub(/^\s+/, "").gsub("#", "# =>"),
           }
         end
       rescue YARD::Handlers::NamespaceMissingError
