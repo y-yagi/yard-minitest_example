@@ -13,8 +13,12 @@ YARD::Parser::SourceParser.before_parse_file do |parser|
 end
 
 YARD::Parser::SourceParser.after_parse_list do |_files, _globals|
-  YARD::Registry.all(:class).map do |o|
+  YARD::Registry.all(:class).each do |o|
     o.visibility = :private if o.superclass.to_s == "Minitest::Example"
+  end
+
+  YARD::Registry.all(:method).each do |o|
+    o.visibility = :private if o.path.start_with?("#example_")
   end
 end
 
