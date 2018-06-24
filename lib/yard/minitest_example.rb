@@ -12,6 +12,12 @@ YARD::Parser::SourceParser.before_parse_file do |parser|
   end
 end
 
+YARD::Parser::SourceParser.after_parse_list do |_files, _globals|
+  YARD::Registry.all(:class).map do |o|
+    o.visibility = :private if o.superclass.to_s == "Minitest::Example"
+  end
+end
+
 module Yard
   module MinitestExample
     class ExampleWrapper < YARD::Handlers::Ruby::HandlesExtension
